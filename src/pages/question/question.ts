@@ -80,8 +80,8 @@ pages: Array<{title: string, component: any}>;
       //'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCX_Bhbh3D6obT8nuQZz3y4TwdGTP60k2o',
       //'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCX_Bhbh3D6obT8nuQZz3y4TwdGTP60k2o'
    // });
-     this.geolocation.getCurrentPosition()
-     .then((pos)=>{
+     navigator.geolocation.getCurrentPosition
+    ((pos)=>{
        
       //this.location = new LatLng(pos.coords.latitude,pos.coords.longitude);
        //console.log(pos,this.location);
@@ -113,33 +113,13 @@ pages: Array<{title: string, component: any}>;
       alert('clicked');
     });
      })
-     .catch((error) => {
-    console.log('Error getting location', error);
-      });
 
  
   }
     
    
    
-   addMarker() {
-     //console.log(this.location +'ayush');
-    this.map.addMarker({
-      title: 'My Marker',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: this.location.lat,
-        lng: this.location.lng
-      }
-    })
-    .then(marker => {
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-        alert('Marker Clicked');
-      });
-    });
-  }
-
+   
    ngOnDestroy(){
      /// navigator.geolocation.clearWatch(this.watchId);
    }
@@ -187,8 +167,8 @@ pages: Array<{title: string, component: any}>;
     )
    }
   submitLocation(){
- this.geolocation.getCurrentPosition()
-     .then((pos)=>{
+ navigator.geolocation.getCurrentPosition
+     ((pos)=>{
        console.log(pos);
        this.rest.submitLocation(this.level.level_no ,pos.coords.latitude,pos.coords.longitude)
    .subscribe((data:any)=>{
@@ -231,9 +211,7 @@ pages: Array<{title: string, component: any}>;
               }
     )
       })
-      .catch((error) => {
-    console.log('Error getting location', error);
-      });
+      
        
 
     }    
