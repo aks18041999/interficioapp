@@ -122,24 +122,7 @@ pages: Array<{title: string, component: any}>;
     
    
    
-   addMarker() {
-     //console.log(this.location +'ayush');
-    this.map.addMarker({
-      title: 'My Marker',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: this.location.lat,
-        lng: this.location.lng
-      }
-    })
-    .then(marker => {
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-        alert('Marker Clicked');
-      });
-    });
-  }
-
+   
    ngOnDestroy(){
      /// navigator.geolocation.clearWatch(this.watchId);
    }
