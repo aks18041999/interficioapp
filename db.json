@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Aush ",
+      "contact": "800150",
+      "level": 0,
+      "username": "ayush1899"
+    },
+    {
+      "password": "dfgsdf",
+      "username": "zfgdfg",
+      "name": "fdsgsd",
+      "contact": "453",
+      "email": "gf@fdg",
+      "id": 2
+    },
+    {
+      "password": "aksasda",
+      "username": "ayush",
+      "name": "26428",
+      "contact": "4543",
+      "email": "shdf@Def",
+      "id": 3
+    }
+  ]
+}

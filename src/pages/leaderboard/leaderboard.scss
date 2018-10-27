@@ -1,0 +1,57 @@
+page-leaderboard {
+.title{
+  color : #fff;
+}
+
+
+.background {
+  background-image: url("https://fsb.zobj.net/crop.php?r=oFJpBpRt1Tn_BwLmZqFgRrSyn2nbuRUAx003tSN_lZyAAWBR3oxnqa3QoXxKrAHxYSfa30CgVwOO-daOWe1g5-zy4Zirplvp9tJzDB0GzRH7YwP5dbwfLF7jsG9Ou5mZiTIozaeF9d4U2K1J") ;
+   background-size:cover;
+   background-position : center;
+display: block;
+}
+
+table{
+  width:100%;
+  table-layout: fixed;
+
+}
+.headrow{
+  background-color: rgba(255,255,255,0.8);
+  color : #000000 !important;
+   //border: 5px solid white;
+   //border-radius: 10px;
+ }
+ .headelement{
+  color: #000;
+  //border: 1px solid white;
+ }
+.thread{
+  height:100vw;
+  background-color: rgba(13, 12, 12,0.7);
+  overflow-x:auto;
+  margin-top: 0px;
+  //border-radius: 10px;
+  //border: 1px solid rgba(255,255,255,0.3);
+}
+
+ion-col{
+  padding: 5vw;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 4vw;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+.gnu {
+  font-family: 'Game of Thrones';
+  font-weight: 300;
+  color: black;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 20px;
+}
+}

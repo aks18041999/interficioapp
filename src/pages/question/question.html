@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar transparent>
+    <button ion-button menuToggle (click)="ngOnDestroy()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{level.level_no}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background" *ngIf="map1==false">
+	<div id='snow1'></div>
+<div id='snow2'></div>
+<div id='snow3'></div>
+<div padding class="questions">
+	<h1> <span class="main-text skew">{{level.title}}
+    <span class="back-text glitch">{{level.title}}</span>
+  
+  </span></h1>
+ <div padding class="question">
+ 	<p>{{level.ques}}</p>
+ 	<ion-item>
+ 		<ion-label floating>Answer</ion-label>
+ 	<ion-input type="text" #answer name= ""></ion-input>
+ 	
+ 	</ion-item>
+ 	<div >
+ 	<button ion-button class="center" (click)="submitAnswer(answer.value)">Submit</button>
+ </div>
+ 	</div>
+
+</div>
+</ion-content>
+
+<ion-content padding class="background" *ngIf="map1==true"> 
+<div id='snow1'></div>
+<div id='snow2'></div>
+<div id='snow3'></div>
+<div padding class="questions">
+  <h1> <span class="main-text skew">{{level.title}}
+    <span class="back-text glitch">{{level.title}}</span>
+  
+  </span></h1></div>
+  <div padding class="question">
+  <p>{{level.ques}}</p>
+
+  <button ion-button class="center" (click)="submitLocation()">Submit</button>
+  </div >
+ 
+ <div #map id="map"></div>
+  
+ 
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

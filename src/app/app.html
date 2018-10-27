@@ -1,0 +1,24 @@
+<ion-menu id="loggedin"[content]="content" type="push">
+  
+  <ion-header >
+    <ion-toolbar class="menu1">
+      <ion-title >MENU</ion-title>
+    </ion-toolbar>
+
+  </ion-header>
+
+  <ion-content >
+    
+    <ion-list >
+      <div  *ngFor="let p of menu" (click)="openPage(p)">
+      <button menuClose ion-item  *ngIf="p!=rootPage">
+        {{p.title}}
+      </button></div>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<div class="con"></div>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

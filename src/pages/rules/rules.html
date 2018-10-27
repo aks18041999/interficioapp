@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar transparent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Rules</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background">
+<div id='snow1'></div>
+<div id='snow2'></div>
+<div id='snow3'></div>
+<div padding class="rules">
+  
+  <h1> <span class="main-text skew">RULES
+    <span class="back-text glitch">RULES</span>
+  </span></h1>
+ 
+  
+        <ul>
+          <li>Rule 1</li>
+          <li>Rule 2</li>
+          <li>Rule 3</li>
+        </ul>
+  
+  
+</div>
+<ion-list>
+    <ion-item *ngFor="let user of users" >
+          <div class="item-note">
+        {{user.username}} 
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

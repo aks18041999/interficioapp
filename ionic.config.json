@@ -1,0 +1,8 @@
+{
+  "name": "interficio apk",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "app_id": "6fa4e323"
+}

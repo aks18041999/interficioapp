@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar transparent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><p class="title">Leaderboard</p></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background" >
+<div *ngIf = "loaded==true" class="table">
+<ion-grid>
+  <div class="headrow">
+  <ion-row>
+    <ion-col col-3 class="headelement">
+    Position
+    </ion-col>
+    <ion-col col-5 class="headelement">
+      Name
+    </ion-col >
+    <ion-col col-2 class="headelement">
+      Level
+    </ion-col>
+    <ion-col col-2 class="headelement">
+      Score
+    </ion-col>
+  </ion-row></div>
+  <div class="thread">
+  <ion-row *ngFor = "let user of standings">
+    <ion-col col-3>
+      {{user.rank}}
+    </ion-col>
+    <ion-col col-5>
+      {{user.name}}
+    </ion-col>
+    <ion-col col-2>
+      {{user.current_level}}
+    </ion-col>
+    <ion-col  col-2>
+      {{user.score}}
+    </ion-col>
+  </ion-row>
+</div>
+</ion-grid>
+</div>
+  <p align="center" style="color:white" class="gnu">Made with ❤ by <a href="http://nitdgplug.org/" target="_blank">GNU/Linux Users' Group</a></p>
+  
+</ion-content>
+
+
+
+
