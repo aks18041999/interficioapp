@@ -60,4 +60,7 @@ export class RegisterPage {
           
   }
 
+  goToHome(){
+      this.navCtrl.pop();
+    }
 }

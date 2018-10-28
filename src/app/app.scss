@@ -25,23 +25,7 @@
 	url('../asssets/fonts/godofwar-webfont.woff') format('woff');
 }
 
-@media not all and (min-height: 600px) and (min-width: 768px) {
-  ion-modal ion-backdrop {
-    visibility: visible !important;
-  }
-}
 
-@media only screen and (min-height: 0px) and (min-width: 0px) {
-  .modal-wrapper {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 60%;
-    border-radius : 10px; 
-  }
-
-}
 .alert-box{ 
   
  >div {  
@@ -66,4 +50,9 @@
  
 }
 
+
+}
+.logo{
+  width:100px;
+  hieght:100px;
 }

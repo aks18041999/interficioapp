@@ -30,5 +30,8 @@ export class LoginPage {
      this.navCtrl.pop();
          
     }
+    goToHome(){
+      this.navCtrl.pop();
+    }
 
 }

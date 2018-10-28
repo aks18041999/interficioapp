@@ -1,5 +1,5 @@
 import { Component ,Input,Renderer2,ElementRef,Inject,ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams ,ModalController,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ModalController,AlertController,ToastController} from 'ionic-angular';
 import {LoginPage} from '../login/login';
 import {RulesPage} from '../rules/rules';
 import {LeaderboardPage} from '../leaderboard/leaderboard';
@@ -47,7 +47,8 @@ pages: Array<{title: string, component: any}>;
   marker : any;
   level : any;
   loaded = false;
-   constructor(public navCtrl: NavController, public navParams: NavParams,public renderer : Renderer2,public rest : RestProvider,public alertCtrl : AlertController,private googleMaps : GoogleMaps,public geolocation : Geolocation) {
+  endpage=false;
+   constructor(public navCtrl: NavController, public navParams: NavParams,public renderer : Renderer2,public rest : RestProvider,public alertCtrl : AlertController,private googleMaps : GoogleMaps,public geolocation : Geolocation, public toastCtrl : ToastController) {
   	this.username = navParams.get('username');
      //this.location = new LatLng(42.346903, -71.135101);
  //  this.autocompleteService= new google.maps.places.AutocompleteService();
@@ -59,7 +60,12 @@ pages: Array<{title: string, component: any}>;
  this.rest.getLevel()
    .subscribe((data:any)=>{
      this.level=data;
+
      this.map1 = data.map_bool;
+     if(data=='ALLDONE')
+       {this.endpage=true
+         this.map1=false;
+       }
      console.log(data);
      this.loaded = true;
      resolve(data);
@@ -85,19 +91,26 @@ pages: Array<{title: string, component: any}>;
        
       //this.location = new LatLng(pos.coords.latitude,pos.coords.longitude);
        //console.log(pos,this.location);
-           let element = this.mapElement.nativeElement;
+          const toast = this.toastCtrl.create({
+      message: 'Got Location Sucessfully',
+      duration: 3000
+    });
+    toast.present();
      let mapOptions : GoogleMapOptions = {
        camera : {
          target : {
            
             lat: pos.coords.latitude,
         lng: pos.coords.longitude
-       }
-         },
-          zoom: 30,
+       },
+
+       zoom : 18,
+       tilt : 30
+         }
+  }
           //mapTypeId: google.maps.MapTypeId.ROADMAP
-     }
-     console.log(mapOptions + 'ayush');
+     
+    console.log(mapOptions + 'ayush');
     this.map = GoogleMaps.create('map',mapOptions);
  
     let marker: Marker = this.map.addMarkerSync({
@@ -109,11 +122,13 @@ pages: Array<{title: string, component: any}>;
         lng: pos.coords.longitude
       }
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      alert('clicked');
-    });
      })
      .catch((error) => {
+        const toast = this.toastCtrl.create({
+      message: 'Location not working . Try to open again',
+      duration: 3000
+    });
+    toast.present();
     console.log('Error getting location', error);
       });
 
@@ -198,13 +213,15 @@ pages: Array<{title: string, component: any}>;
                     subTitle : 'Correct Location',
                     buttons : [{text : 'Next Level',
                       handler: temp=>{
-                       
-                        window.location.reload();
+                       let navTransition= alert.dismiss();
+                        navTransition.then(() => {
+            window.location.reload();
+        });
 
 
 
-                        //this.navCtrl
-                          alert.dismiss();
+
+                      
                           }
                   }],
                    cssClass:'correct'
@@ -232,6 +249,7 @@ pages: Array<{title: string, component: any}>;
     )
       })
       .catch((error) => {
+
     console.log('Error getting location', error);
       });
        

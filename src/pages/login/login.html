@@ -15,7 +15,8 @@
 
 <ion-content padding class="login">
 <form>
-	<ion-list class="input">
+  
+	<ion-list padding class="input">
        <ion-item>
         <ion-label floating><p class="title">Username</p></ion-label>
         <ion-input type="text" #username></ion-input>
@@ -24,9 +25,10 @@
         <ion-label floating><p class="title">Password</p></ion-label>
         <ion-input type="Password" #password></ion-input>
       </ion-item >
-      <button ion-button color="dark" (click)="login(username.value,password.value)">Login</button>
-   
+     
       </ion-list>
-      
+     <button ion-button color="dark" (click)="login(username.value,password.value)">Login</button>
+     
 </form>
+<button ion-button (click)="goToHome()" color="dark">Cancel</button>
 </ion-content>
