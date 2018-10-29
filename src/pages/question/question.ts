@@ -47,7 +47,8 @@ pages: Array<{title: string, component: any}>;
   marker : any;
   level : any;
   loaded = false;
-  endpage=false;
+  nolevel=false;
+  alldone=false;
    constructor(public navCtrl: NavController, public navParams: NavParams,public renderer : Renderer2,public rest : RestProvider,public alertCtrl : AlertController,private googleMaps : GoogleMaps,public geolocation : Geolocation, public toastCtrl : ToastController) {
   	this.username = navParams.get('username');
      //this.location = new LatLng(42.346903, -71.135101);
@@ -62,13 +63,25 @@ pages: Array<{title: string, component: any}>;
      this.level=data;
 
      this.map1 = data.map_bool;
-     if(data=='ALLDONE')
-       {this.endpage=true
+     if(data=='ALLDONE')//all done  level
+       {//this.endpage=true
          this.map1=false;
+         this.nolevel=false;;
+         this.alldone=true;
        }
+      if (data=="condition")// noloevel condition
+      {
+        this.map1=false;
+        this.alldone=false;
+        this.nolevel=true;
+      }
      console.log(data);
      this.loaded = true;
      resolve(data);
+
+
+
+
    },error=>{
      console.log(error);
      reject(error);

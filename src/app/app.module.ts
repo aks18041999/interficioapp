@@ -21,7 +21,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
-import {AndroidFullScreen} from '@ionic-native/android-full-screen';
+//import {AndroidFullScreen} from '@ionic-native/android-full-screen';
 @NgModule({
   declarations: [
     MyApp,
@@ -63,8 +63,8 @@ import {AndroidFullScreen} from '@ionic-native/android-full-screen';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    AuthProvider,
-    AndroidFullScreen
+    AuthProvider
+  //  AndroidFullScreen
   ]
 })
 export class AppModule {}

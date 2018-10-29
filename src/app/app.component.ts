@@ -13,7 +13,7 @@ import {PlayerdetailPage} from '../pages/playerdetail/playerdetail';
 import {LoginPage} from '../pages/login/login';
 import {RestProvider} from '../providers/rest/rest';
 import {Storage} from '@ionic/storage';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+//import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
 @Component({
   templateUrl: 'app.html'
@@ -43,7 +43,7 @@ export class MyApp {
       {title: 'Leaderboard', component : LeaderboardPage},
       {title: 'Log Out' , component : HomePage}
     ];
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public events : Events,public menuCtrl:MenuController, public rest : RestProvider,public storage : Storage,private androidFullScreen: AndroidFullScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public events : Events,public menuCtrl:MenuController, public rest : RestProvider,public storage : Storage) {
     this.initializeApp();
     var TOKEN = localStorage.getItem('TOKEN');
 
@@ -77,9 +77,6 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.androidFullScreen.isImmersiveModeSupported()
-  .then(() => console.log('Immersive mode supported'))
-  .catch(err => console.log(err));
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

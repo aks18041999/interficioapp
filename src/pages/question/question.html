@@ -3,11 +3,13 @@
     <button ion-button menuToggle (click)="ngOnDestroy()">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Level {{level.level_no}}</ion-title>
+    <ion-title *ngIf="nolevel==false&&alldone==false">Level {{level.level_no}}</ion-title>
+    
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="background" *ngIf="map1==false">
+<ion-content padding class="background" *ngIf="map1==false&&nolevel==false&&alldone==false" no-bounce>
+  <div ion-fixed style="height: 100%; width: 100%">
 	<div id='snow1'></div>
 <div id='snow2'></div>
 <div id='snow3'></div>
@@ -29,12 +31,10 @@
  	</div>
 
 </div>
+</div>
 </ion-content>
 
 <ion-content padding class="background" *ngIf="map1==true"> 
-<div id='snow1'></div>
-<div id='snow2'></div>
-<div id='snow3'></div>
 <div padding class="questions">
   <h1> <span class="main-text skew">{{level.title}}
     <span class="back-text glitch">{{level.title}}</span>
@@ -50,7 +50,172 @@
   
  
 </ion-content>
+<ion-content padding class="nolevel" *ngIf="nolevel==true" no-bounce > 
+<div ion-fixed style="height: 100%; width: 100%">
+  <a class='cc color-1' href='#'></a>
+<a class='cc color-2' href='#'></a>
+<a class='cc color-3' href='#'></a>
+<a class='cc color-4' href='#'></a>
+<a class='cc color-5' href='#'></a>
+<a class='cc color-6' href='#'></a>
+<a class='cc color-7' href='#'></a>
+<a class='cc color-8' href='#'></a>
+<a class='cc color-9' href='#'></a>
+<a class='cc color-10' href='#'></a>
+<a class='cc color-11' href='#'></a>
+<a class='cc color-12' href='#'></a>
+<a class='cc color-13' href='#'></a>
+<a class='cc color-14' href='#'></a>
+<a class='cc color-15' href='#'></a>
+<a class='cc color-16' href='#'></a>
+<a class='cc color-17' href='#'></a>
+<a class='cc color-18' href='#'></a>
+<a class='cc color-19' href='#'></a>
+<a class='cc color-20' href='#'></a>
+<a class='cc color-21' href='#'></a>
+<a class='cc color-22' href='#'></a>
+<a class='cc color-23' href='#'></a>
+<a class='cc color-24' href='#'></a>
+<a class='cc color-25' href='#'></a>
+<a class='cc color-26' href='#'></a>
+<a class='cc color-27' href='#'></a>
+<a class='cc color-28' href='#'></a>
+<a class='cc color-29' href='#'></a>
+<a class='cc color-30' href='#'></a>
+<a class='cc color-31' href='#'></a>
+<a class='cc color-32' href='#'></a>
+<a class='cc color-33' href='#'></a>
+<a class='cc color-34' href='#'></a>
+<a class='cc color-35' href='#'></a>
+<a class='cc color-36' href='#'></a>
+<a class='cc color-37' href='#'></a>
+<a class='cc color-38' href='#'></a>
+<a class='cc color-39' href='#'></a>
+<a class='cc color-40' href='#'></a>
+<a class='cc color-41' href='#'></a>
+<a class='cc color-42' href='#'></a>
+<a class='cc color-43' href='#'></a>
+<a class='cc color-44' href='#'></a>
+<a class='cc color-45' href='#'></a>
+<a class='cc color-46' href='#'></a>
+<a class='cc color-47' href='#'></a>
+<a class='cc color-48' href='#'></a>
+<a class='cc color-49' href='#'></a>
+<a class='cc color-50' href='#'></a>
+<p class='info' style="color: #FFF">Hover the color bar.</p>
 
+  <p class="wait">Please Wait For Next Level</p>
+
+
+<div class='wrap'>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+  <div class='c'></div>
+</div>
+
+ </div>
+</ion-content>
+<ion-content padding class="completed" *ngIf="alldone==true">
+<h1 class="bounce">
+  <span class="woo">C</span>
+  
+  <span class="woo">O</span>
+  
+  <span class="woo">N</span>
+  
+  <span class="woo">G</span>
+  
+  <span class="woo">R</span>
+  
+  <span class="woo">A</span>
+  
+  <span class="woo">T</span>
+  
+  <span class="woo">S</span>
+  <br><br>
+ 
+<span class="woo">GAME</span>
+  
+  <span class="woo">SOLVED</span>
+  </h1>
+</ion-content>
 
 
 

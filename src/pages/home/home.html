@@ -7,7 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="background">
+<ion-content padding class="background" no-bounce >
+ <div ion-fixed style="height: 100%; width: 100%">
   <div id='snow1'></div>
 <div id='snow2'></div>
 <div id='snow3'></div>
@@ -19,6 +20,7 @@
   <button ion-button  color="danger" round (click)="openLogin()">Login</button></div>
   <div><button ion-button  color="danger" round (click)="openRegisterModal()">Register</button></div>
   
+</div>
 </div>
   <!--<ion-card class="login" *ngIf = "bool==true" >
   

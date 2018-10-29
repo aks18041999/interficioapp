@@ -14,7 +14,7 @@ page-rules {
 	
 	background-image: url("https://hdqwalls.com/download/kratos-god-of-war-new-1280x2120.jpg");
    background-size:cover;
-  
+  overflow : hidden;
 
 }
 h1{
@@ -25,13 +25,13 @@ h1{
 .rules{
  position :relative;
   text-align : left;
-  background: rgba(242,242,242,0.4);
+  background: rgba(242,242,242,0.8);
   border-radius: 1vw;
   
    
 }
 li{
-  font-size : 6vw;
+  font-size : 5vw;
 }
 
 
