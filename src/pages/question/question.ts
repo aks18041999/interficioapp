@@ -1,4 +1,4 @@
-import { Component ,Input,Renderer2,ElementRef,Inject,ViewChild} from '@angular/core';
+import { Component ,Input,Renderer2,ElementRef,Inject,ViewChild,Pipe,PipeTransform} from '@angular/core';
 import { IonicPage, NavController, NavParams ,ModalController,AlertController,ToastController} from 'ionic-angular';
 import {LoginPage} from '../login/login';
 import {RulesPage} from '../rules/rules';
@@ -18,8 +18,12 @@ import {
   MarkerOptions,
   Marker,
   Environment,
-  LatLng
+  LatLng,
+  LocationService,
+  MyLocation,
+  MyLocationOptions
 } from '@ionic-native/google-maps';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 /**
  * Generated class for the QuestionPage page.
@@ -49,7 +53,7 @@ pages: Array<{title: string, component: any}>;
   loaded = false;
   nolevel=false;
   alldone=false;
-   constructor(public navCtrl: NavController, public navParams: NavParams,public renderer : Renderer2,public rest : RestProvider,public alertCtrl : AlertController,private googleMaps : GoogleMaps,public geolocation : Geolocation, public toastCtrl : ToastController) {
+   constructor(private  locationAccuracy : LocationAccuracy,public navCtrl: NavController, public navParams: NavParams,public renderer : Renderer2,public rest : RestProvider,public alertCtrl : AlertController,private googleMaps : GoogleMaps,public geolocation : Geolocation, public toastCtrl : ToastController) {
   	this.username = navParams.get('username');
      //this.location = new LatLng(42.346903, -71.135101);
  //  this.autocompleteService= new google.maps.places.AutocompleteService();
@@ -69,13 +73,13 @@ pages: Array<{title: string, component: any}>;
          this.nolevel=false;;
          this.alldone=true;
        }
-      if (data=="condition")// noloevel condition
+      if (data.ques=='PAUSE')// noloevel condition
       {
         this.map1=false;
         this.alldone=false;
         this.nolevel=true;
       }
-     console.log(data);
+      console.log(data);
      this.loaded = true;
      resolve(data);
 
@@ -99,8 +103,14 @@ pages: Array<{title: string, component: any}>;
       //'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCX_Bhbh3D6obT8nuQZz3y4TwdGTP60k2o',
       //'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCX_Bhbh3D6obT8nuQZz3y4TwdGTP60k2o'
    // });
-     this.geolocation.getCurrentPosition()
-     .then((pos)=>{
+   let options: MyLocationOptions = {
+  enableHighAccuracy: true
+}; this.locationAccuracy.canRequest().then((canRequest:boolean)=>{
+  if(canRequest){
+this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+           LocationService.getMyLocation(options)
+     .then((pos :MyLocation)=>{
        
       //this.location = new LatLng(pos.coords.latitude,pos.coords.longitude);
        //console.log(pos,this.location);
@@ -111,11 +121,7 @@ pages: Array<{title: string, component: any}>;
     toast.present();
      let mapOptions : GoogleMapOptions = {
        camera : {
-         target : {
-           
-            lat: pos.coords.latitude,
-        lng: pos.coords.longitude
-       },
+         target : pos.latLng,
 
        zoom : 18,
        tilt : 30
@@ -130,10 +136,7 @@ pages: Array<{title: string, component: any}>;
       title: 'Location',
       icon: 'blue',
       animation: 'DROP',
-      position: {
-          lat: pos.coords.latitude,
-        lng: pos.coords.longitude
-      }
+      position: pos.latLng
     });
      })
      .catch((error) => {
@@ -145,28 +148,32 @@ pages: Array<{title: string, component: any}>;
     console.log('Error getting location', error);
       });
 
+        console.log('Request successful')},
+      error => {
+          const toast = this.toastCtrl.create({
+      message: 'Error requesting location permissions',
+      duration: 3000
+    });
+    toast.present();
+   
+        console.log('Error requesting location permissions', error)}
+    );
+  }
+  else{
+    const toast = this.toastCtrl.create({
+      message: 'Cannot Find You',
+      duration: 3000
+    });
+    toast.present();
+     
+  }
+})
+    
+
  
   }
     
    
-   
-   addMarker() {
-     //console.log(this.location +'ayush');
-    this.map.addMarker({
-      title: 'My Marker',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: this.location.lat,
-        lng: this.location.lng
-      }
-    })
-    .then(marker => {
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-        alert('Marker Clicked');
-      });
-    });
-  }
 
    ngOnDestroy(){
      /// navigator.geolocation.clearWatch(this.watchId);
@@ -177,7 +184,7 @@ pages: Array<{title: string, component: any}>;
      .subscribe((data:any)=>{
                   if(data.success == true) {
                      let alert = this.alertCtrl.create({
-                    title : 'Yasss',
+                    title : 'Yes!!',
                     subTitle : 'Correct Answer',
                     buttons : [{text : 'Next Level',
                       handler: temp=>{
@@ -197,9 +204,9 @@ pages: Array<{title: string, component: any}>;
                   }
                   else{
                     let alert = this.alertCtrl.create({
-                    title : 'OOPPPS',
+                    title : 'OOPPPS!!',
                     subTitle : 'Wrong Answer',
-                    buttons : ['try again'],
+                    buttons : ['Try again'],
                      
                    cssClass:'wrong',
                     enableBackdropDismiss: false
@@ -215,10 +222,14 @@ pages: Array<{title: string, component: any}>;
     )
    }
   submitLocation(){
- this.geolocation.getCurrentPosition()
-     .then((pos)=>{
+    let options: MyLocationOptions = {
+  enableHighAccuracy: true
+};
+ LocationService.getMyLocation(options)
+     .then((pos:MyLocation)=>{
+
        console.log(pos);
-       this.rest.submitLocation(this.level.level_no ,pos.coords.latitude,pos.coords.longitude)
+       this.rest.submitLocation(this.level.level_no ,pos.latLng.lat,pos.latLng.lng)
    .subscribe((data:any)=>{
        if(data.success == true) {
                       let alert = this.alertCtrl.create({

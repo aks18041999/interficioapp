@@ -21,6 +21,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 //import {AndroidFullScreen} from '@ionic-native/android-full-screen';
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import {Geolocation} from '@ionic-native/geolocation';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    AuthProvider
+    AuthProvider,
+    Diagnostic,
+    LocationAccuracy
   //  AndroidFullScreen
   ]
 })

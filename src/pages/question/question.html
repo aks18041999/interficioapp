@@ -8,11 +8,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="background" *ngIf="map1==false&&nolevel==false&&alldone==false" no-bounce>
-  <div ion-fixed style="height: 100%; width: 100%">
-	<div id='snow1'></div>
-<div id='snow2'></div>
-<div id='snow3'></div>
+<ion-content padding class="background" *ngIf="map1==false&&nolevel==false&&alldone==false" >
 <div padding class="questions">
 	<h1> <span class="main-text skew">{{level.title}}
     <span class="back-text glitch">{{level.title}}</span>
@@ -26,24 +22,24 @@
  	
  	</ion-item>
  	<div >
- 	<button ion-button class="center" (click)="submitAnswer(answer.value)">Submit</button>
+ 	<button ion-button class="center" (click)="submitAnswer(answer.value)">Submit Answer</button>
  </div>
  	</div>
 
 </div>
-</div>
+
 </ion-content>
 
-<ion-content padding class="background" *ngIf="map1==true"> 
+<ion-content padding class="black" *ngIf="map1==true"> 
 <div padding class="questions">
-  <h1> <span class="main-text skew">{{level.title}}
-    <span class="back-text glitch">{{level.title}}</span>
+  <h1> <span class="main-text skew" style="color: #FFF">{{level.title}}
+    <span class="back-text glitch" style="color: #FFF">{{level.title}}</span>
   
   </span></h1></div>
   <div padding class="question">
   <p>{{level.ques}}</p>
 
-  <button ion-button class="center" (click)="submitLocation()">Submit</button>
+  <button ion-button class="center" (click)="submitLocation()">Submit Location</button>
   </div >
  
  <div #map id="map"></div>
@@ -102,7 +98,7 @@
 <a class='cc color-48' href='#'></a>
 <a class='cc color-49' href='#'></a>
 <a class='cc color-50' href='#'></a>
-<p class='info' style="color: #FFF">Hover the color bar.</p>
+<p class='info' style="color: #FFF">Hold the color bar.</p>
 
   <p class="wait">Please Wait For Next Level</p>
 
